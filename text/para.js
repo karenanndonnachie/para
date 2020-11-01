@@ -5,6 +5,10 @@ november 2020
 based on these libraries : p5.js, p5speech.js, p5dom.js
 using MIT sentiment analysis database afinn165
 using these typefaces : Adobe Garamond and Helvetica Now 
+----------------
+Requires microphone input (speech to text)
+Press DOWN ARROW or add ?frame to the url ==> https://karenanndonnachie.github.io/para/para/index.html?frame
+Space-bar will toggle logging info of sentiment analysis count
 ***************/
 var img, xPosition, yPosition, size, rand, letter, speed,fade, sentCol, textCol, i;
 var letterCount=0;
