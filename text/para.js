@@ -1,7 +1,11 @@
-// Base sketch by 
-// a sketch to learn about "class" construction and also some wiggly letters
-// 25 September
-//wiggly letter stuff
+/**************
+Politics of paratext
+early concept sketch by k.donnachie & a.simionato
+november 2020
+based on these libraries : p5.js, p5speech.js, p5dom.js
+using MIT sentiment analysis database afinn165
+using these typefaces : Adobe Garamond and Helvetica Now 
+***************/
 var xPosition, yPosition, size, rand, letter, speed,fade, sentCol, textCol, i;
 var letterCount=0;
 var wigglyLetters = [];
