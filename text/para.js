@@ -6,7 +6,7 @@ based on these libraries : p5.js, p5speech.js, p5dom.js
 using MIT sentiment analysis database afinn165
 using these typefaces : Adobe Garamond and Helvetica Now 
 ***************/
-var xPosition, yPosition, size, rand, letter, speed,fade, sentCol, textCol, i;
+var img, xPosition, yPosition, size, rand, letter, speed,fade, sentCol, textCol, i;
 var letterCount=0;
 var wigglyLetters = [];
 //var longtext/layout stuff;
@@ -26,11 +26,12 @@ function preload () {
     sentimentRef = loadJSON('MIT_afinn_165.json');
     fontneg=loadFont('data/AGaramondPro-Regular.otf');
     fontpos=fontneutral=loadFont('data/HelveticaNowDisplay.otf');
+    img = loadImage('data/donnachie_simionato_para.png');
 }
 
 function setup() {
   queryString = window.location.search;
-  console.log(queryString);
+  if (queryString=='?frame'){ img.save('donnachie_simionato_paraText', 'png');}
   spoken = new p5.Speech(); // speech synthesis object
   createCanvas(windowWidth,windowHeight);
   background (0);
