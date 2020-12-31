@@ -1,7 +1,5 @@
-// Base sketch by 
-// a sketch to learn about "class" construction and also some wiggly letters
-// 25 September
-//wiggly letter stuff
+// a proof of concept for MIT Generative Unfoldings 
+// by k.donnachie & a.simionato
 var xPosition, yPosition, size, rand, letter, speed,fade, sentCol, textCol, i;
 var letterCount=0;
 var wigglyLetters = [];
