@@ -63,8 +63,7 @@ function draw() {
     allWords.forEach(each => {
       each.showWord();
       wordsPlaced++;
-    } 
-    );
+    } );
     if (toggle==true) {
       if (info[0]=='[') {
         push();
@@ -174,6 +173,7 @@ function newText(result) {
 
 function setText(list) {
   allSentences=[];
+  allWords=[];
   para=[];
   para = RiTa.splitSentences(list.join(' ').toString());
   for (var p=0; p<para.length; p++) {
@@ -209,40 +209,40 @@ function playSynth(tone, size, syll) {
   }
 }
 
-function setIllust() {
-  if (wordsPlaced !== prevwordsPlaced) {
-    generateVertices(width/4, height/4, wordsPlaced);
-  }
-  push();
-  fill(100);
-  stroke(0, 0, 255);
-  strokeWeight(3);
-  translate(width / 4, height /2);
-  beginShape();
-  for (let i = 0; i < vertices.length; i++) { // loop for each point in the current shape.
-    //console.log(vertices[i]);
-    vertex(vertices[i].x, vertices[i].y); // as a vertex with the point coordinates.
-  }
-  endShape(CLOSE);
-  pop();
-  wordpoly=new Polygon();
-  wordpoly.x = width/4;
-  wordpoly.y = height/2;
-  wordpoly.size = 300;
-  wordpoly.sides = wordsPlaced;
-  wordpoly.color = 'darkgray';
-  wordpoly.spin = 0;
-  prevwordsPlaced = wordsPlaced;
-}
+//function setIllust() {
+//  if (wordsPlaced !== prevwordsPlaced) {
+//    generateVertices(width/4, height/4, wordsPlaced);
+//  }
+//  push();
+//  fill(100);
+//  stroke(0, 0, 255);
+//  strokeWeight(3);
+//  translate(width / 4, height /2);
+//  beginShape();
+//  for (let i = 0; i < vertices.length; i++) { // loop for each point in the current shape.
+//    //console.log(vertices[i]);
+//    vertex(vertices[i].x, vertices[i].y); // as a vertex with the point coordinates.
+//  }
+//  endShape(CLOSE);
+//  pop();
+//  wordpoly=new Polygon();
+//  wordpoly.x = width/4;
+//  wordpoly.y = height/2;
+//  wordpoly.size = 300;
+//  wordpoly.sides = wordsPlaced;
+//  wordpoly.color = 'darkgray';
+//  wordpoly.spin = 0;
+//  prevwordsPlaced = wordsPlaced;
+//}
 
-function generateVertices(minSize, maxSize, numpoints) { // the minSize is only there to prevent two verticies opposite eachother ending up too close since those shapes looks very odd.
-  push();
-  vertices = [];
-  translate(width/2, height/2);
-  let spread = 2*PI/(numpoints+1); // divide 360 deg (in radians) on the amount of points to later spread the points out. The +1 is used to prevent generating to angles withing the first section when looping, which can cause crossing of lines. The whole generation process can be done in "more random" ways, but this is one of the simpler.
-  for (let i = 0; i < numpoints; i++) { // repeat a amount of times equal to the amount of points we want.
-    vertices.push(p5.Vector.fromAngle(random(i*spread, (i+1)*spread)).mult(random(minSize, maxSize)));
-    // generate an angle within the first section of the rotation, then create a vector with a length of 1 pointing that direction and multiply it by a random number before adding it to a array.
-  }
-  pop();
-}
+//function generateVertices(minSize, maxSize, numpoints) { // the minSize is only there to prevent two verticies opposite eachother ending up too close since those shapes looks very odd.
+//  push();
+//  vertices = [];
+//  translate(width/2, height/2);
+//  let spread = 2*PI/(numpoints+1); // divide 360 deg (in radians) on the amount of points to later spread the points out. The +1 is used to prevent generating to angles withing the first section when looping, which can cause crossing of lines. The whole generation process can be done in "more random" ways, but this is one of the simpler.
+//  for (let i = 0; i < numpoints; i++) { // repeat a amount of times equal to the amount of points we want.
+//    vertices.push(p5.Vector.fromAngle(random(i*spread, (i+1)*spread)).mult(random(minSize, maxSize)));
+//    // generate an angle within the first section of the rotation, then create a vector with a length of 1 pointing that direction and multiply it by a random number before adding it to a array.
+//  }
+//  pop();
+//}

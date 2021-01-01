@@ -11,11 +11,9 @@ class Paras {
   setval(columns, pages){
     if (pages==1){left=40;}
     else if (pages==2){left=middle +40;}
-    //if (pageNum>0){timer=1; baseFontSize*=3; left*=3; topMargin*=3;}
-    //else {
-    //timer=allWords.length*20;
-  //}
+    if (toPrint==true){baseFontSize*=3; left*=3; topMargin*=3; timer=1;}
     for (var l=0; l<this.words.length; l++){ 
+      if (toPrint!==true){ timer=allWords.length*12;}
        var word = this.words[l];
        var lcword = word.toLowerCase();
         if (left + textWidth(word) < right) { 
@@ -29,9 +27,9 @@ class Paras {
          }
          else {sentVal=0;}
          syll=RiTa.getSyllables(RiTa.stripPunctuation(word)).length;
+         if (word>" "){
          allWords.push(new Word(word, left, topMargin, textWidth(word), sentVal, timer, syll));
-         left += textWidth(word)+ 5;
-         timer+=12;
+         left += textWidth(word)+ 5;}
         }}
         else {
           if (pages==2) {
@@ -60,7 +58,7 @@ class Word{
     this.syll=syll;
   }
   showWord(){
-    if (this.played==true || this.timer<frameCount){
+    if (this.timer<frameCount){
       fill(255);
       noStroke();
       rect (this.left, this.topMargin+baseFontSize/6, this.wWidth, baseFontSize);  
