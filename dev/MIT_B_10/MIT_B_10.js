@@ -31,16 +31,17 @@ function setup() {
     toPrint=true;
     if (pageNum==1){
     createCanvas(2412, 3074);
+    pages=1;
     }
     else if (5>=pageNum>1){
       createCanvas(4824, 3074);
     }}
-  else{createCanvas(windowWidth, windowHeight);}
+  else{createCanvas(windowWidth, windowHeight);  pages=random(numPages);}
   frameRate(30);
   go=false;
   allFonts=[font, font2];
   numPages=[1, 2];
-  pages=random(numPages);
+
   baseFontSize = random(fontSizes);
   textFont(random(allFonts));
   columns=random([1, 2, 4]);
@@ -70,7 +71,7 @@ function draw() {
         textSize(24);
         textAlign(LEFT, TOP);
         fill(255);
-        rect (40, height-44, textWidth(info), 36);
+        rect (40, height-44, textWidth(info)+4, 36);
         fill(0);
         text(info.toString(), 40, height-44);
         text(chapters+' / '+frameRate(), 40, height-88);
@@ -162,6 +163,7 @@ function newText(result) {
   columns=int(random(1, 4));
   list=[];
   var randomselection = random(result.length-8);
+  console.log(randomselection);
   info=result[0];
   chapters=randomselection;
   list=subset(result, randomselection, randomselection+8) ;
