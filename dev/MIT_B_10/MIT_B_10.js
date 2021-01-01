@@ -1,4 +1,4 @@
-var font, font2, middle, para, left, topMargin, right, wordsPlaced, prevwordsPlaced, wordpoly, wWidth, queryString;
+var params, font, font2, middle, para, left, topMargin, right, wordsPlaced, prevwordsPlaced, wordpoly, wWidth, queryString;
 var beep, bop, first, sent, timer, columns, pages, polySynth, played, syll, allFonts, numPages, pageNum, params, r, chapters;
 var myText="";
 var go = false;
@@ -24,9 +24,9 @@ function preload () {
 }
 
 function setup() {
-  let params = getURLParams();
+  params = getURLParams();
    numPages=[1, 2];
-  if (params.seed > 0 && params.page > 0) {
+  if (params.seed > 0 || params.page > 0) {
     randomSeed(params.seed);
     pageNum=params.page;
     toPrint=true;
@@ -35,10 +35,10 @@ function setup() {
     createCanvas(2412, 3074);
     pages=1;
     }
-    else if (5>=pageNum>1){
+    else {
       createCanvas(4824, 3074);
       pages=random(numPages);
-    }}
+    } }
   else{createCanvas(windowWidth, windowHeight);  pages=random(numPages);}
   frameRate(30);
   go=false;
@@ -140,8 +140,8 @@ function keyTyped() {
     frameCount=0;
     loadStrings(next, newText);
     break;
-  case '5':
-    bgcol= [255, 5];
+  case 's':
+    saveCanvas('seed_'+params.seed+'_'+params.page, 'png');
     break;
   case 'c':
     pages=1;
