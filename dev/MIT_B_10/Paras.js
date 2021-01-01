@@ -17,7 +17,7 @@ class Paras {
        var word = this.words[l];
        var lcword = word.toLowerCase();
         if (left + textWidth(word) < right) { 
-          if (topMargin + baseFontSize + baseFontSize/3< height-40) {
+          if (topMargin + baseFontSize + baseFontSize/3< height-120) {
           //Add the word + geometry
           if (sentimentRef.hasOwnProperty(lcword)){
            sentVal=sentimentRef[lcword];
@@ -95,6 +95,6 @@ class Word{
       text (this.word, this.left, this.topMargin);
     }
     fill(0);
-   }   this.played=true;
+   }   
   }
 }

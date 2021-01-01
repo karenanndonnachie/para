@@ -47,6 +47,7 @@ function setup() {
   textFont(random(allFonts));
   columns=random([1, 2, 4]);
   textAlign(LEFT, TOP);
+    polySynth = new p5.PolySynth();
   //list = loadStrings(random(corpus), newText);
   drawPageSpace();
 }
@@ -72,7 +73,7 @@ function draw() {
         fill(255);
         rect (40, height-44, textWidth(info)+4, 36);
         fill(0);
-        text(info.toString(), 40, height-44);
+        text(info.toString(), 40, height-48);
         text(chapters+' / '+frameRate(), 40, height-88);
         pop();
       }
@@ -105,14 +106,10 @@ function windowResized() {
 }
 function mousePressed() {
   //only draw if user has clicked
-  if (go == false) {    
-    go=!go;
-      polySynth = new p5.PolySynth();
-      frameCount = 0;
-      redraw();
-    //list = loadStrings(random(corpus), newText);
+  if (go == false) {
+    go=true;
+  loadStrings(random(corpus), newText);
   }
-  drawPageSpace();
 }
 // This keyTyped function 
 function keyTyped() {
@@ -130,11 +127,17 @@ function keyTyped() {
     //myText="";
     loadStrings(random(corpus), newText);
     break;
+  case ' ':
+    frameCount=0;
+    pages=1;
+    //myText="";
+    loadStrings(random(corpus), newText);
+    break;
   case '4':
     pages=2;
     let next=random(corpus);
     console.log(next);
-        frameCount=0;
+    frameCount=0;
     loadStrings(next, newText);
     break;
   case '5':
@@ -164,10 +167,12 @@ function newText(result) {
   columns=int(random(1, 4));
   list=[];
   var randomselection = random(result.length-8);
-  console.log(randomselection);
+  //console.log(randomselection);
   info=result[0];
+  console.log(info);
   chapters=randomselection;
   list=subset(result, randomselection, randomselection+8) ;
+
   setText(list);
 }
 
@@ -189,6 +194,7 @@ function setText(list) {
 }
 
 function playSynth(tone, size, syll) {
+  userStartAudio();
   let dur = 3.0 * size;
   // time from now (in seconds)
   let time = 0;
@@ -208,41 +214,3 @@ function playSynth(tone, size, syll) {
     polySynth.play(midiToFreq(64-syll), 0.2, 0, syll/8 );
   }
 }
-
-//function setIllust() {
-//  if (wordsPlaced !== prevwordsPlaced) {
-//    generateVertices(width/4, height/4, wordsPlaced);
-//  }
-//  push();
-//  fill(100);
-//  stroke(0, 0, 255);
-//  strokeWeight(3);
-//  translate(width / 4, height /2);
-//  beginShape();
-//  for (let i = 0; i < vertices.length; i++) { // loop for each point in the current shape.
-//    //console.log(vertices[i]);
-//    vertex(vertices[i].x, vertices[i].y); // as a vertex with the point coordinates.
-//  }
-//  endShape(CLOSE);
-//  pop();
-//  wordpoly=new Polygon();
-//  wordpoly.x = width/4;
-//  wordpoly.y = height/2;
-//  wordpoly.size = 300;
-//  wordpoly.sides = wordsPlaced;
-//  wordpoly.color = 'darkgray';
-//  wordpoly.spin = 0;
-//  prevwordsPlaced = wordsPlaced;
-//}
-
-//function generateVertices(minSize, maxSize, numpoints) { // the minSize is only there to prevent two verticies opposite eachother ending up too close since those shapes looks very odd.
-//  push();
-//  vertices = [];
-//  translate(width/2, height/2);
-//  let spread = 2*PI/(numpoints+1); // divide 360 deg (in radians) on the amount of points to later spread the points out. The +1 is used to prevent generating to angles withing the first section when looping, which can cause crossing of lines. The whole generation process can be done in "more random" ways, but this is one of the simpler.
-//  for (let i = 0; i < numpoints; i++) { // repeat a amount of times equal to the amount of points we want.
-//    vertices.push(p5.Vector.fromAngle(random(i*spread, (i+1)*spread)).mult(random(minSize, maxSize)));
-//    // generate an angle within the first section of the rotation, then create a vector with a length of 1 pointing that direction and multiply it by a random number before adding it to a array.
-//  }
-//  pop();
-//}
