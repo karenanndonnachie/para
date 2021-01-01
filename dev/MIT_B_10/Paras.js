@@ -11,14 +11,16 @@ class Paras {
   setval(columns, pages){
     if (pages==1){left=40;}
     else if (pages==2){left=middle +40;}
-    if (pageNum>0){timer=1; baseFontSize*=3; left*=3; topMargin*=3;}
-    else {timer=allWords.length*16;}
+    //if (pageNum>0){timer=1; baseFontSize*=3; left*=3; topMargin*=3;}
+    //else {
+    //timer=allWords.length*20;
+  //}
     for (var l=0; l<this.words.length; l++){ 
        var word = this.words[l];
        var lcword = word.toLowerCase();
         if (left + textWidth(word) < right) { 
           if (topMargin + baseFontSize + baseFontSize/3< height-40) {
-          //text (word, left, topMargin);  
+          //Add the word + geometry
           if (sentimentRef.hasOwnProperty(lcword)){
            sentVal=sentimentRef[lcword];
          }
@@ -26,10 +28,10 @@ class Paras {
            sentVal=sentimentRef2[lcword];
          }
          else {sentVal=0;}
-           //timer = 1;
-           syll=RiTa.getSyllables(RiTa.stripPunctuation(word)).length;
-           allWords.push(new Word(word, left, topMargin, textWidth(word), sentVal, timer, syll));
-           left += textWidth(word)+ 5;
+         syll=RiTa.getSyllables(RiTa.stripPunctuation(word)).length;
+         allWords.push(new Word(word, left, topMargin, textWidth(word), sentVal, timer, syll));
+         left += textWidth(word)+ 5;
+         timer+=12;
         }}
         else {
           if (pages==2) {
@@ -95,6 +97,6 @@ class Word{
       text (this.word, this.left, this.topMargin);
     }
     fill(0);
-   } 
+   }   this.played=true;
   }
 }
