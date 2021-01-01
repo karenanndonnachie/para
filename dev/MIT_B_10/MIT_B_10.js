@@ -25,6 +25,7 @@ function preload () {
 
 function setup() {
   let params = getURLParams();
+   numPages=[1, 2];
   if (params.seed > 0 && params.page > 0) {
     randomSeed(params.seed);
     pageNum=params.page;
@@ -35,12 +36,13 @@ function setup() {
     }
     else if (5>=pageNum>1){
       createCanvas(4824, 3074);
+      pages=random(numPages);
     }}
   else{createCanvas(windowWidth, windowHeight);  pages=random(numPages);}
   frameRate(30);
   go=false;
   allFonts=[font, font2];
-  numPages=[1, 2];
+ 
 
   baseFontSize = random(fontSizes);
   textFont(random(allFonts));
