@@ -11,6 +11,8 @@ class Paras {
   setval(columns, pages){
     if (pages==1){left=40;}
     else if (pages==2){left=middle +40;}
+    if (pageNum>0){timer=1; baseFontSize*=3; left*=3; topMargin*=3;}
+    else {timer=allWords.length*16;}
     for (var l=0; l<this.words.length; l++){ 
        var word = this.words[l];
        var lcword = word.toLowerCase();
@@ -24,8 +26,6 @@ class Paras {
            sentVal=sentimentRef2[lcword];
          }
          else {sentVal=0;}
-         if (pageNum>0){timer=1;}
-         else {timer=allWords.length*16;}
            //timer = 1;
            syll=RiTa.getSyllables(RiTa.stripPunctuation(word)).length;
            allWords.push(new Word(word, left, topMargin, textWidth(word), sentVal, timer, syll));
