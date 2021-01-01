@@ -11,7 +11,7 @@ class Paras {
   setval(columns, pages){
     if (pages==1){left=40;}
     else if (pages==2){left=middle +40;}
-    if (toPrint==true){baseFontSize*=3; left*=3; topMargin*=3; timer=1;}
+    if (toPrint==true){baseFontSize*=3; left=100; topMargin*=3; timer=1;}
     for (var l=0; l<this.words.length; l++){ 
       if (toPrint!==true){ timer=allWords.length*12;}
        var word = this.words[l];
