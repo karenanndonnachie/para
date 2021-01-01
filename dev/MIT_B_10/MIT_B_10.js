@@ -13,8 +13,8 @@ var allWords=[];
 var sentimentRef, sentVal;
 var shortest= 6;
 var info = "";
-var corpus = ["data/books/austen-emma.txt", "data/books/moby_short.txt", "data/books/austen-sense.txt", "data/books/blake-poems.txt", "data/books/whitman-leaves.txt", "data/books/shakespeare-macbeth.txt"];
-var titles = ["Jane Austen", "Moby Dick", "Sense & Sensibility", "William Blake Poetry", "Walt Whitman", "Macbeth"] ;
+var corpus = ["data/books/austen-emma.txt", "data/books/moby_short.txt", "data/books/austen-sense.txt", "data/books/blake-poems.txt", "data/books/shakespeare-macbeth.txt"];
+var titles = ["Jane Austen", "Moby Dick", "Sense & Sensibility", "William Blake Poetry", "Macbeth"] ;
 function preload () {
   list = loadStrings("data/books/moby_short.txt");
   font=loadFont('data/fonts/HelveticaNowDisplay.otf');
@@ -30,6 +30,7 @@ function setup() {
     randomSeed(params.seed);
     pageNum=params.page;
     toPrint=true;
+    fontSizes = [48, 72, 96];
     if (pageNum==1){
     createCanvas(2412, 3074);
     pages=1;
@@ -42,13 +43,10 @@ function setup() {
   frameRate(30);
   go=false;
   allFonts=[font, font2];
- 
-
   baseFontSize = random(fontSizes);
   textFont(random(allFonts));
   columns=random([1, 2, 4]);
   textAlign(LEFT, TOP);
-  polySynth = new p5.PolySynth();
   //list = loadStrings(random(corpus), newText);
   drawPageSpace();
 }
@@ -110,6 +108,8 @@ function mousePressed() {
   //only draw if user has clicked
   if (go == false) {    
     go=!go;
+      polySynth = new p5.PolySynth();
+      frameCount = 0;
       redraw();
     //list = loadStrings(random(corpus), newText);
   }
@@ -132,10 +132,10 @@ function keyTyped() {
     loadStrings(random(corpus), newText);
     break;
   case '4':
-    frameCount=0;
     pages=2;
     let next=random(corpus);
     console.log(next);
+        frameCount=0;
     loadStrings(next, newText);
     break;
   case '5':
@@ -180,6 +180,7 @@ function setText(list) {
     allSentences.push(new Paras(p, para[p], info));
   }
   allWords=[];
+  timer=0;
   allSentences.forEach(sent => {
     sent.setval(columns, pages);
   }
