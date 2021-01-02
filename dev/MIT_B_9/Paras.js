@@ -26,7 +26,8 @@ class Paras {
            timer=allWords.length*20;
            //timer = 1;
            syll=RiTa.getSyllables(RiTa.stripPunctuation(word)).length;
-           allWords.push(new Word(word, left, topMargin, textWidth(word), sentVal, timer, syll));
+           let lex=RiTa.pos(lcword);
+           allWords.push(new Word(word, left, topMargin, textWidth(word), sentVal, timer, syll, lex));
            left += textWidth(word)+ 5;
         }}
         else {
@@ -45,7 +46,7 @@ class Paras {
 }
 
 class Word{
-  constructor(word, left, topMargin, wWidth, sentVal, timer, syll){
+  constructor(word, left, topMargin, wWidth, sentVal, timer, syll, lex){
     this.left=left;
     this.topMargin=topMargin;
     this.wWidth=wWidth;
@@ -85,6 +86,8 @@ class Word{
     if (go==true){
       fill(0);
       //myVoice.speak(this.word);
+      fill(0,0,255);
+      text(this.syll, this.left, this.topMargin-6);
       text (this.word, this.left, this.topMargin);}
   } 
   }
