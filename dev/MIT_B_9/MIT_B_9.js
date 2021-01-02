@@ -223,7 +223,7 @@ function newText(result) {
 //     let addtext=result[i].substring(0, result[i].length - 1);
 //     //console.log(addtext);
 //     myText+=' '+addtext;
-  }
+  //}
   console.log('f:'+ font + ' / s:' + baseFontSize + ' / p:' + pages + ' / c:'+columns);
   setText();
 }
