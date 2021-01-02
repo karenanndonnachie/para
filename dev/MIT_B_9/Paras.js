@@ -55,6 +55,7 @@ class Word{
     this.timer=timer;
     this.played=false;
     this.syll=syll;
+    this.lex=lex;
   }
   showWord(){
     if (this.timer<frameCount){
