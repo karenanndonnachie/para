@@ -215,14 +215,14 @@ function newText(result) {
   list=[];
   var randomselection = random(result.length);
   list=subset(result, randomselection, randomselection+8) ;
-  var myTextID=int(random(result.length-20));
+  //var myTextID=int(random(result.length-20));
   //console.log(myTextID);
   //shortestSentence=12;
-  for (i=myTextID; i<8+myTextID; i++) {
-    //console.log(result[i]);
-    let addtext=result[i].substring(0, result[i].length - 1);
-    //console.log(addtext);
-    myText+=' '+addtext;
+//   for (i=myTextID; i<8+myTextID; i++) {
+//     //console.log(result[i]);
+//     let addtext=result[i].substring(0, result[i].length - 1);
+//     //console.log(addtext);
+//     myText+=' '+addtext;
   }
   console.log('f:'+ font + ' / s:' + baseFontSize + ' / p:' + pages + ' / c:'+columns);
   setText();
