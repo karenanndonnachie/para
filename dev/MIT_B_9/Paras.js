@@ -87,7 +87,8 @@ class Word{
       fill(0);
       //myVoice.speak(this.word);
       fill(0,0,255);
-      text(this.lex, this.left, this.topMargin-6);
+      text(this.lex, this.left, this.topMargin-12);
+      fill(0);
       text (this.word, this.left, this.topMargin);}
   } 
   }
