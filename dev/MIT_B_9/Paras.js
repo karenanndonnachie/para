@@ -26,7 +26,7 @@ class Paras {
            timer=allWords.length*20;
            //timer = 1;
            syll=RiTa.getSyllables(RiTa.stripPunctuation(word)).length;
-           let lex=RiTa.pos(lcword.toString());
+           let lex=new RiString(lcword);
            allWords.push(new Word(word, left, topMargin, textWidth(word), sentVal, timer, syll, lex.pos()));
            left += textWidth(word)+ 5;
         }}
