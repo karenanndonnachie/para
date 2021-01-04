@@ -1,5 +1,7 @@
 # The politics of the paratextual [proof of concept]
 https://karenanndonnachie.github.io/para/MIT_D_9/index.html
+## Mouse press to change text selection
+## Space-Bar will toggle text & title
 
 This project proposes new ways of approaching traditional relationships between written language and human emotion.
 
