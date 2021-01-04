@@ -57,6 +57,7 @@ function mousePressed() {
   paranalysis=[];
   para="";
   sentence=0;
+  right=width-50;
   columns=random([1, 2, 4]);
   background(bgcol);
   loadStrings(random(corpus), newText);
