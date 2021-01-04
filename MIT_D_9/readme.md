@@ -27,6 +27,8 @@ Space-bar will toggle logging title & text
 ### TO-DO! & Updates in course @ 4 Jan 2021
 UI [separate text view and title view]
 
+'Entry' UI to initiate audio
+
 More texts to be added
 
 Print trigger & seed to be finalised
