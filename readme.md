@@ -1,7 +1,8 @@
 # The politics of the Paratextual 
-## PROOF OF CONCEPT [SEP 2020] : https://karenanndonnachie.github.io/para/text/index.html
-## FOR WORK-IN-PROGRESS [JAN 2021] : https://github.com/karenanndonnachie/para/main/MIT_D_9/ --> https://karenanndonnachie.github.io/para/MIT_D_9/index.html
 
+### FOR WORK-IN-PROGRESS [JAN 2021] : https://github.com/karenanndonnachie/para/main/MIT_D_9/ --> https://karenanndonnachie.github.io/para/MIT_D_9/index.html
+
+### PROOF OF CONCEPT [SEP 2020] : https://karenanndonnachie.github.io/para/text/index.html
 This project proposes new ways of approaching traditional relationships between written language and human emotion.
 
 The Romain du Roi, commissioned by King Louis IV of France in the 1600s, has been described as the first custom corporate typeface. Every stroke in this early Western typeface was required to follow strict geometric reasoning in an attempt to diminish the influence of the human hand, considered “vulgar” at the time.
