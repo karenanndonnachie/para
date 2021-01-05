@@ -15,7 +15,7 @@ Our project attempts to disrupt the machinic logic which colonizes typographic s
 ### Notes
 Based on these libraries : p5.js, p5.sound.js, RiTa.js, p5dom.js
 
-Using Gutenberg text libraries 
+Using Gutenberg text libraries [*more texts to be added*]
 
 Using MIT sentiment analysis database afinn165 & Vader
 
@@ -32,4 +32,4 @@ UI [separate text view and title view]
 
 More texts to be added [including recently released out-of copyrigt--> NLP to be refine dto catch "runaway words"
 
-Print trigger & seed to be finalised --> where to place the title of the text on the page --> 
+Print trigger & seed to be finalised --> where to place the title of the text on the page? --> How to best serve double pages?
