@@ -30,6 +30,17 @@ function preload() {
 }
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  if(params.seed > 0 && params.page>0){
+    randomSeed(params.seed);
+    pageNum=params.page;
+    toPrint=true;
+    fontSizes = [72, 96, 120];
+    toPrint();
+    //pg=createGraphics(2412, 3074);
+    //createCanvas(4824, 3074); // OR HALF IF PIXEL DENSITY @ 2!!
+    //DOM control with p5.dom.js OR force reload
+    //<canvas id="c" width="2412" height="3074" style="width: 840px; height: 1025px;"></canvas>
+  }
   loadStrings(random(corpus), newText);
   rParams = {ignoreStopWords: 
   true, ignoreCase: 
@@ -110,10 +121,10 @@ function newText(result) {
     for (i=0; i<words.length; i++) {
       ID++;
       let rWord = RiTa.stripPunctuation(words[i]);
-      if (sentimentRef.hasOwnProperty(rWord)) {
-        sentVal=sentimentRef[rWord];
-      } else if (sentimentRef2.hasOwnProperty(rWord)) {
-        sentVal=sentimentRef2[rWord];
+      if (sentimentRef.hasOwnProperty(rWord.toLowerCase())) {
+        sentVal=sentimentRef[rWord.toLowerCase()];
+      } else if (sentimentRef2.hasOwnProperty(rWord.toLowerCase())) {
+        sentVal=sentimentRef2[rWord.toLowerCase()];
       } else {
         sentVal=0;
       }
