@@ -29,6 +29,6 @@ UI [separate text view and title view]
 
 'Entry' UI to initiate audio
 
-More texts to be added
+More texts to be added [including recently released out-of copyrigt--> NLP to be refine dto catch "runaway words"
 
-Print trigger & seed to be finalised
+Print trigger & seed to be finalised --> where to place the title of the text on the page --> 
