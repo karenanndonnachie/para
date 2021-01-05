@@ -20,7 +20,6 @@ var words=[];
 var topMargin=30;
 var allwords=[];
 var allsentences=[];
-var paranalysis=[];
 var debug=false; 
 var read=false; 
 function preload() {
@@ -53,7 +52,6 @@ function setup() {
 function mousePressed() {
   bgcol=[0];
   title="";
-  paranalysis=[];
   para="";
   sentence=0;
   columns=random([1, 2, 4]);
@@ -64,6 +62,9 @@ function keyTyped() {
   switch(key) {
   case ' ':
     read=!read;
+    break;
+  case 'b':
+    writeDida();
     break;
   case 'x':
     debug=!debug;
@@ -81,7 +82,6 @@ function newText(result) {
   // IF NOT ENOUGH TEXT HAS LOADED
   if (result.length<300) {
     list=[]; 
-    paranalysis=[]; 
     para="";
     background(bgcol);
     loadStrings(random(corpus), newText);
@@ -105,6 +105,7 @@ function newText(result) {
     let i;
     para = list[l].toString();
     para = para.replace(/,, /g, ', ');
+    para = para.replace(/  /g, ' ');
     let test=new RiString(para);
     words = test.words();
     for (i=0; i<words.length; i++) {
@@ -128,16 +129,12 @@ function newText(result) {
         } else { 
           allwords.push(new Word(l, words[i], rWord, syll, flex.pos, sentVal, ID));
         }
-        paranalysis.push([l, words[i], rWord, syll, flex.pos[0], flex.pos[1], sentVal]);
-        //allwords.push(new Word(l, words[i], rWord, syll, flex.pos[0], flex.pos[1], sentVal, ID));
-      } else {//text('ignored that one!'+ words[i], width/2, 100+i*20);
-        paranalysis.push([l, words[i], rWord, [""], "", "", sentVal]);
-        if (words[i]!==',' && words[i]!=='.') { 
-          allwords.push(new Word(l, words[i], rWord, [""], "", "", sentVal, ID));
+      } else if (words[i]!==',' && words[i]!=='.') { 
+          allwords.push(new Word(l, words[i], rWord, [""], [""], sentVal, ID));
         }
+        else{ allwords.push(new Word(l, words[i], rWord, [""], ['..'], sentVal, ID));}
       }
     }
-  }
   sentence=0;
   baseFontSize = random(fontSizes);
   textSize(baseFontSize);
@@ -165,15 +162,13 @@ function windowResized() {
 }
 
 function draw() {
-  background(bgcol);
+  background(bgcol); 
   fill(0);
   allwords.forEach(each => {
     each.build();
     if (debug==true) {
-      console.log(each);
-    }
-  }
-  ); 
+      console.log(each); }
+  } ); 
   push();
   fill(255);
   textSize(24);
@@ -297,6 +292,32 @@ function makeShape(pos1, pos2, pos3, x, y, syll, sentVal, wWidth, ID, listID, fi
      rect(g,g,2*wWidth, 2*wWidth+2);
      }
     pop();
+    break;
+   //case 'd':
+   // push();
+   // translate(x-wWidth/4,y);
+   //  //for (let g=0; g<wWidth; g+= 5){
+   //    //stroke(255,5);
+   //    //fill(10, 10, 10, 1);
+   // stroke(0,255,0);
+   // noFill();
+   // line(0, 1.5*baseFontSize, 1.5*baseFontSize, 0);
+   // line(0, 0, 1.5*baseFontSize, 1.5*baseFontSize);
+   //  //}
+   // pop();
+   // break;
+   // case 'm':
+   // push();
+   // translate(x,y+baseFontSize);
+   // noFill();
+   // let sec = map(second(),0,59, 0, 100); 
+   // colorMode(HSB, 100);
+   // stroke(sec*listID, 100, 100);
+   // line(-wWidth/3, 0, wWidth/3, 0);line(2*wWidth/3, 0, 4*wWidth/3, 0);
+   // //line(0, 0, 1.5*baseFontSize, 1.5*baseFontSize);
+   //  //}
+   // pop();
+   // break;
   }
 }
 function star(x, y, radius1, radius2, npoints) {
@@ -335,4 +356,12 @@ function playSynth(tone, size, syll) {
   } else if (tone==3) {
     polySynth.play(midiToFreq(64-syll.length), 0.2, 0, syll.length/8 );
   }
+}
+function writeDida() {
+  let dida = createWriter('Para_Snippet.txt');
+  dida.write([title, '\n', para]);
+  for (d=0;d<allwords.length;d++){
+    dida.write([allwords[d].ID,'\t', allwords[d].word,'\t', allwords[d].pos1, '\n']);
+  }
+  dida.close();
 }
