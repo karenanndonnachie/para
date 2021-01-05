@@ -3,8 +3,6 @@ THE POLITICS OF THE PARATEXT, 2021, by Karen ann Donachie and Andy Simionato
 This generative work has been created for the 2021 MIT CAST Symposium exhibition, 
 "Generative Unfoldings", curated by Nick Montfort.
 *
-This work leverages a number of open [re]source libraries:
-  -  Processing / P5js / p5 Sound Library / RiTajs library
 All p5js code and design is claimed as original by the authors, including paratext classes, 
 with the exception of the following open [re]source libraries:
   -  Processing / P5js / p5 Sound / RiTajs
