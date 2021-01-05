@@ -3,10 +3,12 @@ THE POLITICS OF THE PARATEXT, 2021, by Karen ann Donachie and Andy Simionato
 This generative work has been created for the 2021 MIT CAST Symposium exhibition, 
 "Generative Unfoldings", curated by Nick Montfort.
 *
-This work leverages a number of open [re]source libraries:
-  -  Processing / P5js / p5 Sound Library / RiTajs library
+All p5js code and design is claimed as original by the authors, including paratext classes, 
+with the exception of the following open [re]source libraries:
+  -  Processing / P5js / p5 Sound / RiTajs
   -  Gutenberg texts
-  -  Sentiment analysis dictionaries [MIT_affin165 and Vader]
+  -  Sentiment analysis dictionaries [MIT_affin_165 and Vader]
+The authors are extremely grateful to the administrators, coders, and designers of these resources & libraries.
 */
 var corpus = ["data/books/blake-poems.txt", "data/books/austen-emma.txt", "data/books/austen-persuasion.txt", "data/books/austen-sense.txt", "data/books/bible-kjv.txt", "data/books/blake-poems.txt", "data/books/bryant-stories.txt", "data/books/burgess-busterbrown.txt", "data/books/carroll-alice.txt", "data/books/chesterton-brown.txt", "data/books/chesterton-thursday.txt", "data/books/edgeworth-parents.txt", "data/books/melville-moby_dick.txt", "data/books/milton-paradise.txt", "data/books/moby_short.txt", "data/books/shakespeare-hamlet.txt", "data/books/shakespeare-macbeth.txt", "data/books/whitman-leaves.txt"];
 var list=[];
@@ -159,7 +161,6 @@ function newText(result) {
   }
   );
   frameCount=0;
-  //bgcol=[baseFontSize, sentSent*40*columns, allwords.length/3];
   // HUMAN READABLE TEXT ==>DEBUG
   para = join(list, ' ');
 }
@@ -201,11 +202,7 @@ function makeShape(pos1, pos2, pos3, x, y, syll, sentVal, wWidth, ID, listID, fi
     //noStroke();
     stroke(0);
     translate(x, y);
-    //colorMode(HSB, 100);
-    //currfreq=map(0, 200, wWidth, 40, 80);
     fill(120, 120, 120, 2 );
-    //fill(bgcol);
-    //fill(currfreq, 100, wWidth, 10);
     let min=boxw-wWidth/2;
     stroke(0, 0, 0, 100);
     rotate(QUARTER_PI*sin(ID));
@@ -213,7 +210,6 @@ function makeShape(pos1, pos2, pos3, x, y, syll, sentVal, wWidth, ID, listID, fi
     for (let m=min; m<boxw; m++){
        fill(currfreq,100,100,0.1);
        quad(0, wWidth, wWidth*cos(listID), boxw*(sentVal+1), unchar(first)-65, wWidth, syll.length, 0) ;
-       //rect(0, 0, m, m);
       }
     pop();   
     break;
@@ -231,10 +227,8 @@ function makeShape(pos1, pos2, pos3, x, y, syll, sentVal, wWidth, ID, listID, fi
     cy = 0;
     let arm = map(unchar(pos3), 65, 115, 1, 12);
        rotate(sin(frameCount/wWidth-ID));
-      //let rot = syll.length;
       let s = map(arm, 0, 12, 0, TWO_PI) - QUARTER_PI; 
     line(cx, cy, cx + cos(s) * secondsRadius, cy + sin(s) * secondsRadius);
-     
     pop();
     break;
   case 'w':
@@ -252,17 +246,11 @@ function makeShape(pos1, pos2, pos3, x, y, syll, sentVal, wWidth, ID, listID, fi
     translate(x+wWidth/2, y+baseFontSize/2);
     rotate(syll.length/2*PI);
     noFill();
-    //fill(0, 0, 0, abs((sentVal+1)*10));
-    //fill(unchar(first), unchar(pos3), wWidth, 2);
     if (first>95){first-=30;}
-    first-=65;
-    //currFreq=map(first, 0, 25, 0, 100);
-    //colorMode(HSB, 20);
-    
+    first-=65;   
     let closed=[OPEN, OPEN, PIE, PIE, CHORD, CHORD];
     for (let c=0; c<20; c++){
       stroke(c*10);
-      //fill(c, 100, 100, 2);
       arc(c, c, wWidth, wWidth, syll.length*QUARTER_PI, sentVal*QUARTER_PI, closed[abs(sentVal)]);
     }
     pop();
@@ -278,9 +266,7 @@ function makeShape(pos1, pos2, pos3, x, y, syll, sentVal, wWidth, ID, listID, fi
     fill(currFreq, 100, 100, 50);
     noStroke();
     rotate(sentVal*QUARTER_PI);
-    //rect(0, boxw/12, wWidth, boxw/6);
     rect(0, 5*boxw/12, wWidth, boxw/6);
-    //rect(0, 9*boxw/12, wWidth, boxw/6);
     colorMode(RGB);
     pop();
     break;
@@ -302,10 +288,8 @@ function makeShape(pos1, pos2, pos3, x, y, syll, sentVal, wWidth, ID, listID, fi
      push();
      translate(x-wWidth,y-wWidth);
      for (let g=0; g<wWidth; g+= 5){
-       //stroke(255,5);
-       fill(10, 10, 10, 1);
-       //stroke(0);
-     rect(g,g,2*wWidth, 2*wWidth+2);
+      fill(10, 10, 10, 1);
+      rect(g,g,2*wWidth, 2*wWidth+2);
      }
     pop();
   }
@@ -326,23 +310,17 @@ function star(x, y, radius1, radius2, npoints) {
 }
 function playSynth(tone, size, syll) {
   userStartAudio();
-  // note duration (in seconds)
   let dur = 3.0 * size;
-  // time from now (in seconds)
   let time = 0;
-  // velocity (volume, from 0 to 1)
   let vel = 0.1;
-  // notes can overlap with each other
   if (tone==1) {
     polySynth.play('G2', vel*3, 0, dur);
     polySynth.play('C3', vel*3, time += 1/4, dur);
     polySynth.play('G3', vel*3, time += 1/4, dur);
-    //currfreq=60;
   } else if (tone==2) {
     polySynth.play('B4', vel*3, 0, dur);
     polySynth.play('C5', vel*3, time += 1/4, dur);
     polySynth.play('A4', vel*3, time += 1/4, dur);
-    //currfreq=60;
   } else if (tone==3) {
     polySynth.play(midiToFreq(64-syll.length), 0.2, 0, syll.length/8 );
   }
