@@ -7,7 +7,6 @@ This work leverages a number of open [re]source libraries:
   -  Processing / P5js / p5 Sound Library / RiTajs library
   -  Gutenberg texts
   -  Sentiment analysis dictionaries [MIT_affin165 and Vader]
-  -  
 */
 var corpus = ["data/books/blake-poems.txt", "data/books/austen-emma.txt", "data/books/austen-persuasion.txt", "data/books/austen-sense.txt", "data/books/bible-kjv.txt", "data/books/blake-poems.txt", "data/books/bryant-stories.txt", "data/books/burgess-busterbrown.txt", "data/books/carroll-alice.txt", "data/books/chesterton-brown.txt", "data/books/chesterton-thursday.txt", "data/books/edgeworth-parents.txt", "data/books/melville-moby_dick.txt", "data/books/milton-paradise.txt", "data/books/moby_short.txt", "data/books/shakespeare-hamlet.txt", "data/books/shakespeare-macbeth.txt", "data/books/whitman-leaves.txt"];
 var list=[];
@@ -15,7 +14,7 @@ var which=[];
 var para="";
 var first, sentSent, sentence, middle, right, left, columns, pages, ID, polySynth, tone, size, rParams, sentVal, sentimentRef, sentimentRef2, l, word, rWord, syll, pos1, pos2, sentVal, boxh, boxw, currfreq, played;
 var title="";
-var fontSizes = [36, 72, 120];
+var fontSizes = [36, 72, 96];
 var baseFontSize=36;
 var words=[];
 var topMargin=30;
@@ -57,7 +56,6 @@ function mousePressed() {
   paranalysis=[];
   para="";
   sentence=0;
-  right=width-50;
   columns=random([1, 2, 4]);
   background(bgcol);
   loadStrings(random(corpus), newText);
@@ -141,10 +139,10 @@ function newText(result) {
     }
   }
   sentence=0;
-  topMargin=30;
-  frameCount=0;
   baseFontSize = random(fontSizes);
   textSize(baseFontSize);
+  topMargin=baseFontSize;
+  frameCount=0;
   allwords.forEach(each => {
     each.place(columns, pages, baseFontSize, sentence);
   }
@@ -159,7 +157,7 @@ function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   sentence=0;
   right=width-40;
-  topMargin=30;
+  topMargin=baseFontSize;
   allwords.forEach(each => {
     each.place(columns, pages, baseFontSize, sentence);
   }
@@ -176,19 +174,12 @@ function draw() {
     }
   }
   ); 
-  //for (let i=0; i<paranalysis.length; i++){
-  //  push();
-  //  makeShape(allwords[i].pos1, allwords[i].pos2, allwords[i].left, allwords[i].topMargin, allwords[i].syll, allwords[i].sentVal, allwords[i].wWidth) ;
-  //  //text(paranalysis[i][0] +' : ' + paranalysis[i][1]+' ['+ paranalysis[i][2]+ '] || ' + paranalysis[i][3]+' || ' + paranalysis[i][4]+ paranalysis[i][5]+' ' + paranalysis[i][6], floor(i/40)*220+30, i%40*13+150);
-  //  pop();  
-  //}
-  //text(para, 150, 20, width-300, height);
   push();
   fill(255);
   textSize(24);
   if (read==true) {
     fill(0);
-    text(title, width/2-textWidth(title)/2, height-100);
+    text(title, width/2-textWidth(title)/2, height-60);
   }  
   pop();
 }

@@ -15,18 +15,8 @@ class Word{
   }
   place(columns, pages, baseFontSize, sentence){ 
     this.topMargin=topMargin;
+    let bottom=height-50+(baseFontSize*2);
     textSize(baseFontSize);
-    //if(this.listID>sentence) {
-    //topMargin += baseFontSize + baseFontSize/3;
-    //sentence=this.listID;}
-    //  if (columns==1) {
-    //    left = 40;}
-    //  if (columns==2) {
-    //    left = middle+40;}
-    //  else if (columns==4) {
-    //    left = random(40,width-200);}
-    //  else if (pages==2){left=middle +40;}
-    //}
     this.wWidth=textWidth(this.word);
     if (left + this.wWidth < right){ //&& this.listID<=sentence
       this.left=left; 
@@ -35,14 +25,16 @@ class Word{
       sentSent+=this.sentVal;
       left+=this.wWidth+baseFontSize/3;
     }
-    else if(topMargin + 2.5*baseFontSize < height-baseFontSize*2.5 && this.topMargin<height-baseFontSize*2.5) {
+    else if(topMargin + 2.5*baseFontSize < bottom && this.topMargin<bottom) {
       topMargin+=2.5*baseFontSize;
       this.topMargin=topMargin;
       if (columns==1) {
         left = 40;}
       else if (columns==2 || pages==2) {
         left = middle+40;}
-      if (columns==4 || left + this.wWidth > right) {
+      if (columns==4 || left + this.wWidth > width-100) {
+        left = random(40,width-200);}
+      if (left + this.wWidth > width-100) {
         left = random(40,width-200);}
       this.left=left;
       left+=this.wWidth + baseFontSize/3;
