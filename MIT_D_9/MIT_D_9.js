@@ -5,8 +5,13 @@ This generative work has been created for the 2021 MIT CAST Symposium exhibition
 *
 This work leverages a number of open [re]source libraries:
   -  Processing / P5js / p5 Sound Library / RiTajs library
+All p5js code and design is claimed as original by the authors, including paratext classes, 
+with the exception of the following open [re]source libraries:
+  -  Processing / P5js / p5 Sound / RiTajs
   -  Gutenberg texts
   -  Sentiment analysis dictionaries [MIT_affin165 and Vader]
+  -  Sentiment analysis dictionaries [MIT_affin_165 and Vader]
+The authors are extremely grateful to the administrators, coders, and designers of these resources & libraries.
 */
 var corpus = ["data/books/blake-poems.txt", "data/books/austen-emma.txt", "data/books/austen-persuasion.txt", "data/books/austen-sense.txt", "data/books/bible-kjv.txt", "data/books/blake-poems.txt", "data/books/bryant-stories.txt", "data/books/burgess-busterbrown.txt", "data/books/carroll-alice.txt", "data/books/chesterton-brown.txt", "data/books/chesterton-thursday.txt", "data/books/edgeworth-parents.txt", "data/books/melville-moby_dick.txt", "data/books/milton-paradise.txt", "data/books/moby_short.txt", "data/books/shakespeare-hamlet.txt", "data/books/shakespeare-macbeth.txt", "data/books/whitman-leaves.txt"];
 var list=[];
@@ -236,13 +241,8 @@ function makeShape(pos1, pos2, pos3, x, y, syll, sentVal, wWidth, ID, listID, fi
     translate(x+wWidth/2, y+baseFontSize/2);
     rotate(syll.length/2*PI);
     noFill();
-    //fill(0, 0, 0, abs((sentVal+1)*10));
-    //fill(unchar(first), unchar(pos3), wWidth, 2);
     if (first>95){first-=30;}
     first-=65;
-    //currFreq=map(first, 0, 25, 0, 100);
-    //colorMode(HSB, 20);
-    
     let closed=[OPEN, OPEN, PIE, PIE, CHORD, CHORD];
     for (let c=0; c<20; c++){
       stroke(c*10);
@@ -336,13 +336,9 @@ function star(x, y, radius1, radius2, npoints) {
 }
 function playSynth(tone, size, syll) {
   userStartAudio();
-  // note duration (in seconds)
   let dur = 3.0 * size;
-  // time from now (in seconds)
   let time = 0;
-  // velocity (volume, from 0 to 1)
   let vel = 0.1;
-  // notes can overlap with each other
   if (tone==1) {
     polySynth.play('G2', vel*3, 0, dur);
     polySynth.play('C3', vel*3, time += 1/4, dur);
